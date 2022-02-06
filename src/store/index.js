@@ -17,6 +17,9 @@ export default new Vuex.Store({
     setImages(state, images) {
       state.images = images;
     },
+    addImages(state, images){
+      state.images.push(...images)
+    },
   },
   actions: {
     fetchImages(context) {
@@ -26,7 +29,7 @@ export default new Vuex.Store({
           .then((res) => {
             console.log(res.data)
             if (res.data.status == "success") {
-              context.commit("setImages", res.data.message);
+              context.commit("addImages", res.data.message);
               resolve();
             } else {
               reject();
@@ -37,6 +40,24 @@ export default new Vuex.Store({
           });
       });
       return fetchPromise;
+    },
+    searchImages(context, query) {
+      const searchPromise = new Promise((resolve, reject) => {
+        const response = SERVER.get(`breed/${query}/images`);
+        response
+          .then((res) => {
+            if (res.data.status == "success") {
+              console.log(res.data)
+              resolve(res.data.message);
+            } else {
+              reject();
+            }
+          })
+          .catch((error) => {
+            reject(error);
+          });
+      });
+      return searchPromise;
     },
   },
 
