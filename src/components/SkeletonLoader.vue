@@ -13,6 +13,9 @@ export default {
     default: true,
     },
   },
+  data(){
+    return{};
+  }
 };
 </script>
 
