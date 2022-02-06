@@ -4,6 +4,8 @@
       <div class="search-wrapper">
         <div class="search-bar-wrapper">
           <input
+            @keyup.enter="onEnter"
+            v-model="searchString"
             class="search-bar"
             type="text"
             placeholder="Browse Dog By Breed"
@@ -22,9 +24,8 @@
 
 <script>
 import TopBar from "../components/TopBar.vue";
-import base from "../mixin/base"
-import StaggeredGallery from "../components/StaggeredGallery.vue"
-
+import base from "../mixin/base";
+import StaggeredGallery from "../components/StaggeredGallery.vue";
 
 export default {
   name: "Home",
@@ -44,6 +45,9 @@ export default {
     };
   },
   methods: {
+    onEnter() {
+      this.$router.push(`/search?query=${this.searchString}`);
+    },
     fetchImages() {
       this.beginLoading(`Fetching images`);
       this.resetError();
@@ -54,12 +58,30 @@ export default {
         })
         .catch((error) => {
           this.setError(error);
-        })
-        .finally(() => {});
+        });
+    },
+    scroll() {
+      window.onscroll = () => {
+        let bottomOfWindow =
+          Math.max(
+            window.pageYOffset,
+            document.documentElement.scrollTop,
+            document.body.scrollTop
+          ) +
+            window.innerHeight ===
+          document.documentElement.offsetHeight;
+        if (bottomOfWindow) {
+          this.fetchImages();
+        }
+      };
     },
   },
   mounted() {
-    this.fetchImages();
+    if (this.images.length == 0) {
+      this.fetchImages();
+      this.fetchImages();
+    }
+    this.scroll();
   },
 };
 </script>
