@@ -1,12 +1,20 @@
 <template>
   <div>
     <top-bar>
-      <p class="title" v-if="isBusy">
-        Searching for <span class="query">"{{ query }}"</span>
-      </p>
-      <p class="title" v-else>
-        Search Results for <span class="query">"{{ query }}"</span>
-      </p>
+      <div v-if="isBusy">
+        <p class="title">
+          Searching for <span class="query">"{{ query }}"</span>
+        </p>
+      </div>
+      <div v-else>
+        <p class="title" v-if="hasError">
+          No search results for <span class="query">"{{ query }}"</span>
+        </p>
+        <p class="title" v-else>
+          Search Results for <span class="query">"{{ query }}"</span>
+        </p>
+
+      </div>
     </top-bar>
     <div class="container">
       <skeleton-loader-list v-if="isBusy"></skeleton-loader-list>
@@ -48,15 +56,16 @@ methods: {
       this.beginLoading(`Searching for`);
       this.resetError();
       this.$store
-      .dispatch("searchImages", this.query)
+      .dispatch("searchImages", this.query.toLowerCase())
       .then((data) =>{
         this.images = data;
-        this.finishLoading();
       })
       .catch((error) =>{
         this.setError(error);
       })
-      .finally(() =>{});
+      .finally(() =>{
+        this.finishLoading();
+      });
     },
   },
   mounted(){
