@@ -8,7 +8,7 @@
             v-model="searchString"
             class="search-bar"
             type="text"
-            placeholder="Browse Dog By Breed"
+            placeholder="Search dog by breed"
           />
           <div class="search-icon">
             <i class="ri-search-line"></i>
@@ -19,6 +19,9 @@
     <div class="container">
       <skeleton-loader-list v-if="isBusy"></skeleton-loader-list>
       <staggered-gallery :images="images"></staggered-gallery>
+      <div v-if="isLoading" class="spinner">
+        <i class="spinner-icon ri-loader-4-line"></i>
+      </div>
     </div>
   </div>
 </template>
@@ -45,6 +48,7 @@ export default {
   data() {
     return {
       searchString: "",
+      isLoading: false,
     };
   },
   methods: {
@@ -74,7 +78,16 @@ export default {
             window.innerHeight ===
           document.documentElement.offsetHeight;
         if (bottomOfWindow) {
-          this.fetchImages();
+          this.resetError();
+          this.isLoading = true;
+          this.$store
+            .dispatch("fetchImages")
+            .then(() => {
+              this.isLoading = false;
+            })
+            .catch((error) => {
+              this.setError(error);
+            });
         }
       };
     },
@@ -125,5 +138,26 @@ export default {
 .search-bar::placeholder {
   color: gray;
   font: 500;
+}
+
+.spinner {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  animation: spinner-animation 1s linear infinite;
+}
+
+.spinner-icon {
+  transform: scale(2);
+  display: inline-block;
+}
+
+@keyframes spinner-animation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 </style>
