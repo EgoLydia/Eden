@@ -35,10 +35,4 @@ export default {
   margin-bottom: 2rem;
   vertical-align: top;
 }
-
-.card-list {
-  column-gap: 3rem;
-  column-fill: initial;
-  column-count: 3;
-}
 </style>
