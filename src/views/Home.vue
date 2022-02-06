@@ -17,6 +17,7 @@
       </div>
     </top-bar>
     <div class="container">
+      <skeleton-loader-list v-if="isBusy"></skeleton-loader-list>
       <staggered-gallery :images="images"></staggered-gallery>
     </div>
   </div>
@@ -26,6 +27,7 @@
 import TopBar from "../components/TopBar.vue";
 import base from "../mixin/base";
 import StaggeredGallery from "../components/StaggeredGallery.vue";
+import SkeletonLoaderList from "../components/SkeletonLoaderList.vue";
 
 export default {
   name: "Home",
@@ -33,6 +35,7 @@ export default {
   components: {
     "top-bar": TopBar,
     "staggered-gallery": StaggeredGallery,
+    "skeleton-loader-list": SkeletonLoaderList,
   },
   computed: {
     images() {
@@ -92,7 +95,13 @@ export default {
   position: relative;
   padding-left: 10rem;
   padding-right: 10rem;
-  width: 80%;
+  width: 100%;
+}
+
+.search-wrapper {
+  width: var(--full-height);
+  display: flex;
+  justify-content: center;
 }
 
 .search-bar {
