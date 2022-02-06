@@ -1,6 +1,6 @@
 <template>
   <div>
-    <skeleton-loader :isloading="isloading"></skeleton-loader>
+    <!-- <skeleton-loader :isloading="isloading"></skeleton-loader> -->
     <div v-show="!isloading" class="card">
       <img
         @load="onloaded"
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import SkeletonLoader from "./SkeletonLoader.vue";
+// import SkeletonLoader from "./SkeletonLoader.vue";
 
 export default {
   name: "Card",
@@ -30,7 +30,7 @@ export default {
     };
   },
   components: {
-    "skeleton-loader": SkeletonLoader,
+    // "skeleton-loader": SkeletonLoader,
   },
   methods: {
     onloaded() {
@@ -41,18 +41,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.card {
-  border-radius: 0.6rem;
-  overflow: hidden;
-  position: relative;
-}
-
-.card-img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-}
-
 .card {
   border-radius: 0.6rem;
   overflow: hidden;
@@ -82,30 +70,6 @@ export default {
 .card-title {
   font-weight: 500;
   margin-bottom: 0.2rem;
-}
-
-.card-subtitle {
-  font-weight: 300;
-  font-size: 0.75rem;
-  margin-top: 0;
-}
-
-.card-footer {
-  margin-top: auto;
-  color: white;
-  padding: 0.625rem;
-  padding-left: 1.5rem;
-}
-
-.card-title {
-  font-weight: 500;
-  margin-bottom: 0.2rem;
-}
-
-.card-subtitle {
-  font-weight: 300;
-  font-size: 0.75rem;
-  margin-top: 0;
 }
 
 .card-footer {
