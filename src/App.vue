@@ -7,14 +7,6 @@
 </template>
 
 <style lang="scss">
-
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-}
-
 * {
    --full-height: 100%;
 }
@@ -26,17 +18,28 @@
   color: #2c3e50;
 }
 
+.card-list {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-auto-rows: 240px;
+}
+
+@media screen and (min-width: 600px) {
+  .card-tall {
+    grid-row: span 2 / auto;
+  }
+
+  .card-wide {
+    grid-column: span 2 / auto;
+  }
+}
+
 @media only screen and (max-width: 640px) {
   .container {
     padding-left: 1rem;
     padding-right: 1rem;
     margin-top: -2.5rem;
-  }
-
-  .card-list {
-    column-gap: 3rem;
-    column-fill: initial;
-    column-count: 1;
   }
 }
 
@@ -46,12 +49,6 @@
     padding-right: 5rem;
     margin-top: -2.5rem;
   }
-
-  .card-list {
-    column-gap: 3rem;
-    column-fill: initial;
-    column-count: 1;
-  }
 }
 
 @media (min-width: 768px) {
@@ -60,18 +57,12 @@
     padding-right: 5rem;
     margin-top: -2.5rem;
   }
-
-  .card-list {
-    column-gap: 3rem;
-    column-fill: initial;
-    column-count: 3;
-  }
 }
 
 @media (min-width: 1024px) {
   .container {
-    padding-left: 14rem;
-    padding-right: 14rem;
+    padding-left: 10rem;
+    padding-right: 10rem;
     margin-top: -2.5rem;
   }
 }
