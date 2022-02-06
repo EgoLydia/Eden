@@ -1,7 +1,7 @@
 <template>
   <div class="card-list">
     <card
-      class="card-item"
+      :class="`${index % 2 == 0? 'card-tall':''}`"
       v-for="(image, index) in images"
       :key="index"
       :image="image"
@@ -31,8 +31,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.card-item {
-  margin-bottom: 2rem;
-  vertical-align: top;
-}
+
 </style>
