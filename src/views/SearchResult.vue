@@ -10,7 +10,7 @@
     </top-bar>
     <div class="container">
       <skeleton-loader-list v-if="isBusy"></skeleton-loader-list>
-      <staggered-gallery :images="images"></staggered-gallery>
+      <staggered-gallery v-else :images="images"></staggered-gallery>
     </div>
   </div>
 </template>
