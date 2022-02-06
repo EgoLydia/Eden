@@ -12,11 +12,10 @@ const routes = [
   },
   {
     path: '/search',
-    props: (route) =>({ query: route.query.query}),
-    component: ()=>
-    import('../views/SearchResult.vue')
-
-  }
+props: (route) =>({ query: route.query.query}),
+    component: () => 
+    import(/* webpackChunkName: "about" */ '../views/SearchResult.vue'),
+  },
 ]
 
 const router = new VueRouter({
