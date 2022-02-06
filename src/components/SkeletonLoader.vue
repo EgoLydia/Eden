@@ -25,15 +25,16 @@ export default {
   border-radius: 0.6rem;
   display: flex;
   flex-flow: column;
-  height: 500px;
-  width: 300px;
+  height: 100%;
+  width: 100%;
   justify-content: flex-end;
-  padding: 1rem;
 }
 
 .breed-loader {
   width: 50%;
   padding: 0.4rem;
+  margin: 1rem;
+  border-radius: 0.1rem;
   animation: skeleton-animation 1s linear infinite alternate;
 }
 
@@ -44,5 +45,5 @@ export default {
   100% {
       background-color: #d6d5d5;
   }
-  }
+}
 </style>
