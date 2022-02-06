@@ -8,7 +8,7 @@
         Search Results for <span class="query">"{{ query }}"</span>
       </p>
     </top-bar>
-    <div class="wrapper">
+    <div class="container">
       <staggered-gallery :images="images"></staggered-gallery>
     </div>
   </div>
