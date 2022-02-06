@@ -9,6 +9,7 @@
       </p>
     </top-bar>
     <div class="container">
+      <skeleton-loader-list v-if="isBusy"></skeleton-loader-list>
       <staggered-gallery :images="images"></staggered-gallery>
     </div>
   </div>
@@ -19,6 +20,7 @@ import Vue from "vue"
 import TopBar from "../components/TopBar.vue"
 import base from "../mixin/base"
 import StaggeredGallery from "../components/StaggeredGallery.vue"
+import SkeletonLoaderList from "../components/SkeletonLoaderList.vue"
 
 export default Vue.extend(
      {
@@ -34,6 +36,7 @@ export default Vue.extend(
   components:{
     'top-bar' : TopBar,
     'staggered-gallery' : StaggeredGallery,
+    "skeleton-loader-list" : SkeletonLoaderList
   },
   data(){
     return {
@@ -63,6 +66,23 @@ methods: {
 </script>
 <style lang="scss" scoped>
 
+@media only screen and (max-width: 933px) {
+  .title {
+    font-weight: 600;
+    font-size: 2.5rem;
+    color: #3d485a;
+    text-align: center;
+  }
+}
+
+@media only screen and (min-width: 933px) {
+  .title {
+    font-weight: 600;
+    font-size: 2.5rem;
+    color: #3d485a;
+    margin-left: 12rem;
+  }
+}
   .query {
   font-weight: 300;
   color: #737985;
