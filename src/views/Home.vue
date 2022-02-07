@@ -103,16 +103,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.search-bar-wrapper {
-  display: flex;
-  position: relative;
-  padding-left: 10rem;
-  padding-right: 10rem;
-  width: 100%;
-}
 
 .search-wrapper {
-  width: var(--full-height);
+  width: 100%;
   display: flex;
   justify-content: center;
 }
