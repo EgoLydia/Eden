@@ -1,9 +1,9 @@
 <template>
 <div>
 
-  <div @click="openModal" class="card">
+  <div class="card">
     <skeleton-loader :isloading="isloading"></skeleton-loader>
-    <div v-show="!isloading" class="card">
+    <div v-show="!isloading" @click="openModal" class="card">
       <img
         @load="onloaded"
         class="card-img"
